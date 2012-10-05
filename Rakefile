@@ -19,7 +19,7 @@ PANDOC_PDF_OPTS = [
 
 task :build => [:html, :pdf]
 
-task :html => :css do
+task :html => [:css, "index.html"] do
   tmp = Tempfile.new('slides')
   tmp.close
   begin
@@ -41,6 +41,21 @@ task :html => :css do
     end
   ensure
     tmp.unlink
+  end
+end
+
+file "index.html" do
+  File.open("index.html", "w") do |f|
+    f.puts <<-EOF
+<!doctype html>
+<head>
+<title>Oops!</title>
+</head>
+<body>
+You really want to be <a href="slides.html">here</a>.
+</body>
+</html>
+    EOF
   end
 end
 
@@ -71,7 +86,7 @@ end
 
 task :clean do
   %w{combined.tex *.aux *.vrb *.out *.log custom.css
-     slides.pdf slides.tex slides.html}.each do |pat|
+     slides.pdf slides.tex slides.html index.html}.each do |pat|
     Dir.glob(pat).each do |i|
       rm_f i
     end
