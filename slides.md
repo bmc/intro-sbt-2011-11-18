@@ -6,8 +6,8 @@
 
 **Brian Clapper**\
 **ArdenTex, Inc.**\
-_@bclapper_\
-_bmc@ardentex.com_
+*@bclapper*\
+*bmc@ardentex.com*
 
 ----------
 
